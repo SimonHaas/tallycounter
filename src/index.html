@@ -1,85 +1,101 @@
 <html>
-    <body>
-        <p id="counter">0</p>
-        <div class="split left" onclick="incrementCounter()">
-            <p class="sign noselect">+</p>
-        </div>
-        <div class="split right" onclick="decrementCounter()">
-            <p class="sign noselect">-</p>
-        </div>
-    </body>
-    <script>
-        let counter = document.getElementById("counter");
 
-        if (localStorage.counterValue) {
-            counter.innerHTML = localStorage.counterValue;
-        }
+<body>
+    <p id="counter" onclick="confirmReset()">0</p>
+    <div class="split left" onclick="incrementCounter()">
+        <p class="sign noselect">+</p>
+    </div>
+    <div class="split right" onclick="decrementCounter()">
+        <p class="sign noselect">-</p>
+    </div>
+</body>
+<script>
+    let counter = document.getElementById("counter");
 
-        function getCounterValue() {
-            return Number(counter.innerHTML);
-        }
+    if (localStorage.counterValue) {
+        counter.innerHTML = localStorage.counterValue;
+    }
 
-        function incrementCounter() {
-            counter.innerHTML = getCounterValue() + 1;
+    function getCounterValue() {
+        return Number(counter.innerHTML);
+    }
+
+    function incrementCounter() {
+        counter.innerHTML = getCounterValue() + 1;
+        storeCounterValue();
+    }
+
+    function decrementCounter() {
+        counter.innerHTML = getCounterValue() - 1;
+        storeCounterValue();
+    }
+
+    function storeCounterValue() {
+        localStorage.counterValue = getCounterValue();
+    }
+
+    function confirmReset() {
+        let confirmed = confirm("Zähler wirklich auf Null zurücksetzen?");
+        if (confirmed) {
+            counter.innerHTML = 0;
             storeCounterValue();
         }
+    }
+</script>
+<style>
+    #counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20%;
+        font-weight: bold;
+        font-size: 20vmin;
+    }
 
-        function decrementCounter() {
-            counter.innerHTML = getCounterValue() - 1;
-            storeCounterValue();
-        }
+    /* Split the screen in half */
+    .split {
+        height: 80%;
+        width: 50%;
+        position: fixed;
+        top: 20%;
+        overflow-x: hidden;
+    }
 
-        function storeCounterValue() {
-            localStorage.counterValue = getCounterValue();
-        }
-    </script>
-    <style>
-        #counter {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 20%;
-            font-weight: bold;
-            font-size: 20vmin;
-        }
+    /* Control the left side */
+    .left {
+        left: 0;
+        background-color: grey;
+    }
 
-        /* Split the screen in half */
-        .split {
-            height: 80%;
-            width: 50%;
-            position: fixed;
-            top: 20%;
-            overflow-x: hidden;
-        }
+    /* Control the right side */
+    .right {
+        right: 0;
+        background-color: lightgray;
+    }
 
-        /* Control the left side */
-        .left {
-            left: 0;
-            background-color: grey;
-        }
+    .sign {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60v;
+        font-weight: bold;
+        font-size: 20vmin;
+    }
 
-        /* Control the right side */
-        .right {
-            right: 0;
-            background-color: lightgray;
-        }
+    .noselect {
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently supported by Chrome and Opera */
+    }
+</style>
 
-        .sign {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60v;
-            font-weight: bold;
-            font-size: 20vmin;
-        }
-
-        .noselect {
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-        }
-    </style>
 </html>
