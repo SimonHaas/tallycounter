@@ -1,108 +1,85 @@
 <html>
+    <body>
+        <p id="counter">0</p>
+        <div class="split left" onclick="incrementCounter()">
+            <p class="sign noselect">+</p>
+        </div>
+        <div class="split right" onclick="decrementCounter()">
+            <p class="sign noselect">-</p>
+        </div>
+    </body>
+    <script>
+        let counter = document.getElementById("counter");
 
-<body>
-    <p id="counter">0</p>
-    <i class="gg-trash" onclick="confirmReset()"></i>
-    <div class="split left" onclick="incrementCounter()">
-        <p class="sign noselect">+</p>
-    </div>
-    <div class="split right" onclick="decrementCounter()">
-        <p class="sign noselect">-</p>
-    </div>
-</body>
-<script>
-    let counter = document.getElementById("counter");
+        if (localStorage.counterValue) {
+            counter.innerHTML = localStorage.counterValue;
+        }
 
-    if (localStorage.counterValue) {
-        counter.innerHTML = localStorage.counterValue;
-    }
+        function getCounterValue() {
+            return Number(counter.innerHTML);
+        }
 
-    function getCounterValue() {
-        return Number(counter.innerHTML);
-    }
-
-    function incrementCounter() {
-        counter.innerHTML = getCounterValue() + 1;
-        storeCounterValue();
-    }
-
-    function decrementCounter() {
-        counter.innerHTML = getCounterValue() - 1;
-        storeCounterValue();
-    }
-
-    function storeCounterValue() {
-        localStorage.counterValue = getCounterValue();
-    }
-
-    function confirmReset() {
-        let confirmed = confirm("Zähler wirklich auf Null zurücksetzen?");
-        if (confirmed) {
-            counter.innerHTML = 0;
+        function incrementCounter() {
+            counter.innerHTML = getCounterValue() + 1;
             storeCounterValue();
         }
-    }
-</script>
-<style>
-    .noselect {
-        -webkit-touch-callout: none;
-        /* iOS Safari */
-        -webkit-user-select: none;
-        /* Safari */
-        -khtml-user-select: none;
-        /* Konqueror HTML */
-        -moz-user-select: none;
-        /* Firefox */
-        -ms-user-select: none;
-        /* Internet Explorer/Edge */
-        user-select: none;
-        /* Non-prefixed version, currently supported by Chrome and Opera */
-    }
 
-    .gg-trash {
-        box-sizing: border-box;
-        position: relative;
-        display: block;
-        transform: scale(var(--ggs, 1));
-        width: 10px;
-        height: 12px;
-        border: 2px solid transparent;
-        box-shadow:
-            0 0 0 2px,
-            inset -2px 0 0,
-            inset 2px 0 0;
-        border-bottom-left-radius: 1px;
-        border-bottom-right-radius: 1px;
-        margin-top: 4px
-    }
+        function decrementCounter() {
+            counter.innerHTML = getCounterValue() - 1;
+            storeCounterValue();
+        }
 
-    .gg-trash::after,
-    .gg-trash::before {
-        content: "";
-        display: block;
-        box-sizing: border-box;
-        position: absolute
-    }
+        function storeCounterValue() {
+            localStorage.counterValue = getCounterValue();
+        }
+    </script>
+    <style>
+        #counter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20%;
+            font-weight: bold;
+            font-size: 20vmin;
+        }
 
-    .gg-trash::after {
-        background: currentColor;
-        border-radius: 3px;
-        width: 16px;
-        height: 2px;
-        top: -4px;
-        left: -5px
-    }
+        /* Split the screen in half */
+        .split {
+            height: 80%;
+            width: 50%;
+            position: fixed;
+            top: 20%;
+            overflow-x: hidden;
+        }
 
-    .gg-trash::before {
-        width: 10px;
-        height: 4px;
-        border: 2px solid;
-        border-bottom: transparent;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        top: -7px;
-        left: -2px
-    }
-</style>
+        /* Control the left side */
+        .left {
+            left: 0;
+            background-color: grey;
+        }
 
+        /* Control the right side */
+        .right {
+            right: 0;
+            background-color: lightgray;
+        }
+
+        .sign {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60v;
+            font-weight: bold;
+            font-size: 20vmin;
+        }
+
+        .noselect {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+        }
+    </style>
 </html>
