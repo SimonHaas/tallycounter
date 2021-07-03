@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  tallycounter:
+    build: .
+    container_name: tallycounter
+    volumes:
+      - ./src:/usr/share/nginx/html
+    ports:
+      - 80:80
