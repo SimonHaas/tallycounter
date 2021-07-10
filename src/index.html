@@ -18,34 +18,30 @@
 <body>
 
     <div class="container">
-        <div class="row m-5">
-            <div class="col text-center m-5" onclick="confirmReset()">
-                <i class="bi-trash reset"></i>
+        <div class="row align-items-center">
+            <div class="col" onclick="confirmReset()">
+                <i class="bi-trash text-center reset"></i>
             </div>
             <div class="col">
                 <p id="counter" class="text-center text-xl"></p>
             </div>
-            <div class="col m-5">
+            <div class="col">
                 <p id="plus_counter" class="text-end h2"></p>
                 <p id="minus_counter" class="text-end h2"></p>
             </div>
         </div>
-        <div class="plus-minus mt-5">
-            <div class="row m-3">
-                <div class="btn-group btn-group-xl" role="group">
-                    <button type="button" class="btn btn-outline-primary" onclick="increment(1)">+1</button>
-                    <button type="button" class="btn btn-outline-primary" onclick="increment(2)">+2</button>
-                    <button type="button" class="btn btn-outline-primary" onclick="increment(5)">+5</button>
-                    <button type="button" class="btn btn-outline-primary" onclick="increment(10)">+10</button>
-                </div>
+        <div class="row">
+            <div class="col btn-group-vertical btn-group-xl order-1" role="group">
+                <button type="button" class="btn btn-outline-primary" onclick="increment(1)">+1</button>
+                <button type="button" class="btn btn-outline-primary" onclick="increment(2)">+2</button>
+                <button type="button" class="btn btn-outline-primary" onclick="increment(5)">+5</button>
+                <button type="button" class="btn btn-outline-primary" onclick="increment(10)">+10</button>
             </div>
-            <div class="row m-3">
-                <div class="btn-group btn-group-xl" role="group">
-                    <button type="button" class="btn btn-outline-secondary" onclick="decrement(1)">-1</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="decrement(2)">-2</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="decrement(5)">-5</button>
-                    <button type="button" class="btn btn-outline-secondary" onclick="decrement(10)">-10</button>
-                </div>
+            <div class="col btn-group-vertical btn-group-xl order-0" role="group">
+                <button type="button" class="btn btn-outline-secondary" onclick="decrement(1)">-1</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="decrement(2)">-2</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="decrement(5)">-5</button>
+                <button type="button" class="btn btn-outline-secondary" onclick="decrement(10)">-10</button>
             </div>
         </div>
     </div>
@@ -119,14 +115,7 @@
     }
 
     .btn-group-xl>.btn {
-        padding: 0.5rem 1rem;
         font-size: 5rem;
-        border-radius: 0.3rem;
-    }
-
-    .btn-group-xl>.btn+.dropdown-toggle-split {
-        padding-right: 0.75rem;
-        padding-left: 0.75rem;
     }
 </style>
 
