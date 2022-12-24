@@ -1,7 +1,7 @@
 default:
   image: node:16.16.0
 
-stages:          # List of stages for jobs, and their order of execution
+stages:
   - deploy
 
 # deploy_preview:
