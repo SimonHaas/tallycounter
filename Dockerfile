@@ -1,3 +1,3 @@
 FROM nginx
 
-COPY ./docs /usr/share/nginx/html
+COPY ./docs /usr/share/nginx/html/tallycounter
